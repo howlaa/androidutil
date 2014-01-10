@@ -1,0 +1,26 @@
+package cn.com.smartcost.offer.util;
+
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+
+/**
+ * HTTPclient have time out 
+ * @author wangfeng
+ * @date date 2013-12-20 09:30:26
+ */
+public class MyHttpClient extends DefaultHttpClient{
+	/**
+	 * get HttpClient time out setting
+	 * @param rTimeOut request Timeout
+	 * @param sTimeOut request data time out
+	 * @return
+	 */
+	public DefaultHttpClient getHttpClient(int rTimeOut,int sTimeOut){
+		BasicHttpParams httpParams = new BasicHttpParams();
+		HttpConnectionParams.setConnectionTimeout(httpParams, rTimeOut);
+		HttpConnectionParams.setSoTimeout(httpParams, sTimeOut);
+		DefaultHttpClient client = new DefaultHttpClient(httpParams);
+		return client;
+	}
+}
